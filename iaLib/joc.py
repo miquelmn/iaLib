@@ -40,6 +40,10 @@ class Joc:
     ):
         self._mida_pantalla = mida_pantalla
         self._agents = agents
+
+        if title is None:
+            title = "Joc sense nom"
+
         self.__title = title
         self.__game_finished = False
 
