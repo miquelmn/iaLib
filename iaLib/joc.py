@@ -41,14 +41,12 @@ class Joc:
         self._mida_pantalla = mida_pantalla
         self._agents = agents
 
-        if title is None:
-            title = "Joc sense nom"
-
         self.__title = title
         self.__game_finished = False
 
-        pygame.display.set_caption(self.__title)
-        self._game_window = pygame.display.set_mode(self._mida_pantalla)
+        if self._mida_pantalla is not None:
+            pygame.display.set_caption(self.__title)
+            self._game_window = pygame.display.set_mode(self._mida_pantalla)
 
     def comencar(self) -> None:
         pygame.init()
