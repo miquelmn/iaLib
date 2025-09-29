@@ -8,8 +8,6 @@ indicades pels agents.
 Creat per: Miquel Miró Nicolau (UIB), 2022
 """
 
-# import os
-# os.environ["SDL_VIDEO_WINDOW_POS"] = "%d,%d" % (100, 100)
 import abc
 import sys
 import time
@@ -80,7 +78,7 @@ class Joc:
             accio = a.actua(percepcio=self.percepcio())
             if not isinstance(accio, tuple):
                 accio = [accio]
-            self._aplica(*accio, agent_actual=a)
+            self._aplica(*accio, agent_actual=a.nom)
 
     def set_game_status(self, finish: bool):
         self.__game_finished = finish
