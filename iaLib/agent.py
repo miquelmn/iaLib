@@ -9,9 +9,12 @@ class Trampes(Exception):
 
 
 class Agent:
+    ID_AGENT = 1
+
     def __init__(self, long_memoria: int) -> None:
         self.__memoria_permesa = long_memoria
         self.__memoria = []
+        self.nom = f"Agent {Agent.ID_AGENT}"
 
         self._posicio_pintar = None
 
