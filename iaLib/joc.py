@@ -42,6 +42,8 @@ class Joc:
         self.__title = title
         self.__game_finished = False
 
+        self.__agent_playing = 0
+
         if self._mida_pantalla is not None:
             pygame.display.set_caption(self.__title)
             self._game_window = pygame.display.set_mode(self._mida_pantalla)
@@ -74,11 +76,15 @@ class Joc:
         raise NotImplementedError
 
     def _logica(self, agents):
-        for a in agents:
-            accio = a.actua(percepcio=self.percepcio())
-            if not isinstance(accio, tuple):
-                accio = [accio]
-            self._aplica(*accio, agent_actual=a.nom)
+        self._logica_agent(self._agents[self.__agent_playing])
+        self.__agent_playing = (self.__agent_playing + 1) % len(self._agents)
+
+
+    def _logica_agent(self, agent):
+        accio = agent.actua(percepcio=self.percepcio())
+        if not isinstance(accio, tuple):
+            accio = [accio]
+        self._aplica(*accio, agent_actual=agent.nom)
 
     def set_game_status(self, finish: bool):
         self.__game_finished = finish

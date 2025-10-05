@@ -16,6 +16,8 @@ class Agent:
         self.__memoria = []
         self.nom = f"Agent {Agent.ID_AGENT}"
 
+        Agent.ID_AGENT += 1
+
         self._posicio_pintar = None
 
     def get_memoria(self, temps: int) -> dict:
