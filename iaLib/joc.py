@@ -42,7 +42,7 @@ class Joc:
         self.__title = title
         self.__game_finished = False
 
-        self.__agent_playing = 0
+        self.turn = 0
 
         if self._mida_pantalla is not None:
             pygame.display.set_caption(self.__title)
@@ -76,8 +76,10 @@ class Joc:
         raise NotImplementedError
 
     def _logica(self, agents):
-        self._logica_agent(self._agents[self.__agent_playing])
-        self.__agent_playing = (self.__agent_playing + 1) % len(self._agents)
+        agent_playing = self.turn % len(self._agents)
+        self._logica_agent(self._agents[agent_playing])
+
+        self.turn += 1
 
 
     def _logica_agent(self, agent):
