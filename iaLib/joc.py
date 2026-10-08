@@ -40,7 +40,7 @@ class Joc:
         self._agents = agents
 
         self.__title = title
-        self.__game_finished = False
+        self._game_finished = False
 
         self.turn = 0
 
@@ -58,7 +58,7 @@ class Joc:
                     pygame.quit()
                     sys.exit()
             self._draw()
-            if not self.__game_finished:
+            if not self._game_finished:
                 self._logica(self._agents)
             pygame.display.flip()
 
@@ -89,7 +89,7 @@ class Joc:
         self._aplica(*accio, agent_actual=agent.nom)
 
     def set_game_status(self, finish: bool):
-        self.__game_finished = finish
+        self._game_finished = finish
 
 
 class JocNoGrafic(Joc, ABC):
@@ -102,7 +102,7 @@ class JocNoGrafic(Joc, ABC):
         super(JocNoGrafic, self).__init__(agents=agents, mida_pantalla=None, title=None)
 
     def comencar(self) -> None:
-        while True:
+        while not self._game_finished:
             self._draw()
             self._logica(self._agents)
             time.sleep(0.25)
