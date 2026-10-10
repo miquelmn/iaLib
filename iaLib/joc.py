@@ -104,5 +104,6 @@ class JocNoGrafic(Joc, ABC):
     def comencar(self) -> None:
         while not self._game_finished:
             self._draw()
-            self._logica(self._agents)
-            time.sleep(0.25)
+            if not self._game_finished:
+                self._logica(self._agents)
+                # time.sleep(0.25)
